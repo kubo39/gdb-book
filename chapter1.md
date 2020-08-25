@@ -21,3 +21,11 @@ There is NO WARRANTY, to the extent permitted by law.
 ```console
 $ curl -fsS https://dlang.org/install.sh | bash -s dmd
 ```
+
+執筆時点でのD言語環境は以下のとおりである。
+
+```console
+$ dmd --version
+DMD64 D Compiler v2.093.1
+Copyright (C) 1999-2020 by The D Language Foundation, All Rights Reserved written by Walter Bright
+```
