@@ -6,7 +6,7 @@ GDBでは名前の逆修飾もサポートしている。
 通常作業言語をDに選択していればデフォルトで逆修飾機能がはたらく。
 
 ```console
-(gdb) demangle _Dmain
+(gdb) demangle -l d -- _Dmain
 D main
 ```
 
