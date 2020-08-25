@@ -1,0 +1,5 @@
+*~
+*.o
+fibonacci
+watch
+.gdb_history
