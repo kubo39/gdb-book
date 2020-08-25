@@ -1,5 +1,6 @@
 *~
 *.o
 fibonacci
+segv
 watch
 .gdb_history
