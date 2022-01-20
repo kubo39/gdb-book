@@ -22,8 +22,13 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-void main()
+void bar()
 {
     int* tmp;
     *tmp = 42;
+}
+
+void main()
+{
+    bar();
 }
