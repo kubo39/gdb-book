@@ -1,0 +1,19 @@
+name: gdb tests
+on: [push, pull_request]
+jobs:
+  test:
+    name: gdb tests
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install D Compiler
+        uses: dlang-community/setup-dlang@v1
+        with:
+          compiler: dmd-latest
+
+      - name: Compile binary with debuginfo
+        run: dmd -g segv.d
+
+      - name: Run tests
+        run: gdb -n -ex 'set confirm off' -ex run -ex 'bt full' -ex q ./segv
