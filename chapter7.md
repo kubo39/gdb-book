@@ -7,7 +7,7 @@
 CI環境でGDBを動かしたいときなどに使うことがある。
 
 ```console
-$ gdb -n -ex 'set confirm off' -ex run -ex 'bt full' ex -q ./a.out
+$ gdb -n -ex 'set confirm off' -ex run -ex 'bt full' -ex q ./a.out
 ```
 
 ## debug expr
