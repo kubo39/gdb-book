@@ -16,17 +16,23 @@ void main()
 }
 ```
 
+```console
+$ dmd -g watch.d
+```
+
 `watch -location` で変数を監視して内容が変わったら停止する、といった使い方をする。
 
 ```console
+$ gdb -q --nx watch
+Reading symbols from watch...
 (gdb) start
-Temporary breakpoint 1 at 0x32de4: file watch.d, line 3.
+Temporary breakpoint 1 at 0x42ec4: file ./watch.d, line 27.
 Starting program: /home/kubo39/dev/dlang/gdb-book/watch
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
 
-Temporary breakpoint 1, D main () at watch.d:3
-3	    int y = 7;
+Temporary breakpoint 1, D main () at ./watch.d:27
+27          int y = 7;
 (gdb) watch -location y
 Hardware watchpoint 2: -location y
 (gdb) info watchpoints
@@ -37,10 +43,10 @@ Continuing.
 
 Hardware watchpoint 2: -location y
 
-Old value = -9424
+Old value = -12075
 New value = 7
-D main () at watch.d:4
-4	    y++;
+D main () at ./watch.d:28
+28          y++;
 (gdb) continue
 Continuing.
 
@@ -48,6 +54,6 @@ Hardware watchpoint 2: -location y
 
 Old value = 7
 New value = 8
-D main () at watch.d:5
-5	    y++;
+D main () at ./watch.d:29
+29          y++;
 ```

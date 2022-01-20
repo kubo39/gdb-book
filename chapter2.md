@@ -34,7 +34,7 @@ fibonacci: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically l
 次にGDBを起動してデバッグシンボルつきのバイナリを読み込む。
 
 ```console
-$ gdb fibonacci
+$ gdb -q --nx fibonacci # 説明のため.gdbinitを読み込まないように
 (...)
 ```
 
@@ -54,22 +54,21 @@ Cのプログラムから生成されたバイナリで `start` を使うと `ma
 
 ```console
 (gdb) start
-Temporary breakpoint 1 at 0x32e88: file fibonacci.d, line 9.
+Temporary breakpoint 1 at 0x43164: file ./fibonacci.d, line 33.
 Starting program: /home/kubo39/dev/dlang/gdb-book/fibonacci
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
 
-Temporary breakpoint 1, D main () at fibonacci.d:9
-9	    auto result = fib(10);
+Temporary breakpoint 1, D main () at ./fibonacci.d:33
+33          auto result = fib(10);
 ```
-
 
 `step` でfib関数の中へ入ってみる。
 ちゃんと関数の中に入っていることが確認できる。
 
 ```console
 (gdb) step
-fibonacci.fib(int) (n=10) at fibonacci.d:3
+fibonacci.fib(int) (n=10) at ./fibonacci.d:27
 3	    if (n < 2) return n;
 ```
 
@@ -79,8 +78,8 @@ fibonacci.fib(int) (n=10) at fibonacci.d:3
 (gdb) next
 4	    else return fib(n - 1) + fib(n - 2);
 (gdb) finish
-Run till exit from #0  fibonacci.fib(int) (n=10) at fibonacci.d:4
-0x0000555555586e92 in D main () at fibonacci.d:9
+Run till exit from #0  fibonacci.fib(int) (n=10) at ./fibonacci.d:28
+0x0000555555586e92 in D main () at ./fibonacci.d:9
 9	    auto result = fib(10);
 Value returned is $1 = 55
 ```
@@ -90,26 +89,27 @@ Value returned is $1 = 55
 
 ```console
 (gdb) break fibonacci.d:fibonacci.fib(int)
-Breakpoint 4 at 0x555555592c97: file fibonacci.d, line 3.
+Breakpoint 4 at 0x555555592c97: file ./fibonacci.d, line 27.
 ```
 
 そのままプログラムを実行するコマンド `run` を使うと `breakpoint` で設定した箇所で実行を中断する。
 
 ```console
 (gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
 Starting program: /home/kubo39/dev/dlang/gdb-book/fibonacci
-[Switching to thread 1 (process 31105)](running)
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
 
-Breakpoint 4, fibonacci.fib(int) (n=10) at fibonacci.d:3
-3	    if (n < 2) return n;
+Breakpoint 2, fibonacci.fib(int) (n=10) at ./fibonacci.d:27
+27          if (n < 2) return n;
 ```
 
 GDBは `quit` コマンドで終了する。
 
 ```console
 (gdb) quit
-
+(...)
 Debugger finished
 ```
