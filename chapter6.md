@@ -13,7 +13,7 @@ GDB 11.2ではD言語のdemangleは[DMD 2.077以降の新しいマングリン�
 以下のログでは `segv.bar` が正しくdemangleできていることが確認できる。
 
 ```console
-)$ gdb -q --nx segv
+$ gdb -q --nx segv
 Reading symbols from segv...
 (gdb) start
 Temporary breakpoint 1 at 0x42f08: file ./segv.d, line 33.
