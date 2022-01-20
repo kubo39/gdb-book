@@ -34,6 +34,13 @@ segv.bar() () at ./segv.d:28
 #1  0x0000555555596f0d in D main () at ./segv.d:33
 ```
 
+また新しいマングリングルールで追加された後方参照を含むような名前修飾についても逆修飾されることが確認できる。
+
+```console
+$ gdb -q --nx -ex 'demangle -l d -- _D9scopesegv3barFNaNbNfxDFNfZvZxQi' -ex q
+scopesegv.bar(const(void() @safe delegate))
+```
+
 ちなみにdemangleのコードはGDBとbinutilsで共通なので, `addr2line`, `c++filt`, `nm`, `objdump` といったツール群でもdemangleが可能である。
 ただし現時点でこれらのツールは `-C` や `--demangle=auto` では勝手にdemangeしてくれないので、addr2line/nm/objdumpでは `--demangle=dlang` を、c++filtは `-s dlang` もしくは `--format=dlang` を、という感じで明示的にオプションを渡す必要がある。
 
