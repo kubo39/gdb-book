@@ -22,9 +22,16 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
+struct S
+{
+    int x;
+    float y;
+}
+
 void main()
 {
-    int y = 7;
-    y++;
-    y++;
+    auto s = S();
+    s.x = 42;
+    s.y = 1.41;
+    s.x++;
 }
