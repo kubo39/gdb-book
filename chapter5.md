@@ -48,6 +48,8 @@ Continuing.
 [Inferior 1 (process 30753) exited normally]
 ```
 
+## rr
+
 実際にはリバースデバッギングを行う際は[rr](https://rr-project.org/)を用いることになるであろう。
 
 rrは記録と再生でコマンドが別れている。
