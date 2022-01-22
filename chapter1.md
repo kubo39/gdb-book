@@ -32,7 +32,7 @@ $ make
 $ export PATH="$HOME/gdb-11.2/gdb:$PATH"
 ```
 
-次にmake installは--prefixを指定する。/usr/localに入れる場合は未指定でもよい。
+次にmake installは--prefixを指定する場合。/usr/localに入れる場合は未指定でもよい。
 
 ```console
 $ # make installを行う際、既存のgdbのパスを上書きしたくない場合などは ./configure 時に--prefixを指定しておく
