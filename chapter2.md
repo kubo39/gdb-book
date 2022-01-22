@@ -106,6 +106,21 @@ Breakpoint 2, fibonacci.fib(int) (n=10) at ./fibonacci.d:27
 27          if (n < 2) return n;
 ```
 
+また `tui enable` でgdbの画面上部にソースコードを出すこともできる(TUIモード)。
+
+```console
+(gdb) tui enable
+```
+
+![tuiモード](./images/tui.png)
+
+
+再度TUIモードを無効にしたい場合は `tui disable` を使う。
+
+```console
+(gdb) tui disable
+```
+
 GDBは `quit` コマンドで終了する。
 
 ```console
