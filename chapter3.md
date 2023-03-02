@@ -27,7 +27,7 @@ Invalid number "4.sizeof".
 $5 = 4
 ```
 
-* ぜんぜんだめなケース (連想配列リテラルとかレンジとか)
+* ぜんぜんだめなケース (連想配列リテラルとかスライスとか)
 
 ```console
 (gdb) print [1:1]
@@ -38,10 +38,6 @@ A syntax error in expression, near `:1])'.
 A syntax error in expression, near `. $]'.
 (gdb) print ("hoge"[1 .. $])
 A syntax error in expression, near `. $])'.
-(gdb) print 0..3
-A syntax error in expression, near `..3'.
-(gdb) print (0..3)
-A syntax error in expression, near `..3)'.
 ```
 
 ## 型
