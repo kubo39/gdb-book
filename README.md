@@ -9,3 +9,4 @@
 - [5. リバースデバッギング](./chapter5.md)
 - [6. 逆修飾](./chapter6.md)
 - [7. Tips](./chapter7.md)
+- [8. core dump](./chapter8.md)
