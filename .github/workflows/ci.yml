@@ -1,11 +1,17 @@
 name: gdb tests
-on: [push, pull_request]
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
 jobs:
   test:
     name: gdb tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install gdb
         run: |
@@ -14,7 +20,7 @@ jobs:
           sudo apt clean
 
       - name: Install D Compiler
-        uses: dlang-community/setup-dlang@v1
+        uses: dlang-community/setup-dlang@v2
         with:
           compiler: dmd-latest
 
