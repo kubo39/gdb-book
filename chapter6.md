@@ -42,7 +42,8 @@ scopesegv.bar(const(void() @safe delegate))
 ```
 
 ちなみにdemangleのコードはGDBとbinutilsで共通なので, `addr2line`, `c++filt`, `nm`, `objdump` といったツール群でもdemangleが可能である。
-ただし現時点でこれらのツールは `-C` や `--demangle=auto` では勝手にdemangeしてくれないので、addr2line/nm/objdumpでは `--demangle=dlang` を、c++filtは `-s dlang` もしくは `--format=dlang` を、という感じで明示的にオプションを渡す必要がある。
+
+新しめのツールの場合は[`-C` や `--demangle=auto` での自動demangleをサポートしているが](https://github.com/bminor/binutils-gdb/commit/b1741ab0dafd899889faab6e862094a325a6b83c)、明示的に行いたい場合もしくは古いツール類を利用している場合は addr2line/nm/objdump では `--demangle=dlang` を、c++filtは `-s dlang` もしくは `--format=dlang` を、という感じで明示的にオプションを渡す必要がある。
 
 DMDでうまくいかないんだけど...という場合は `ddemangle` というツールを使うとだいたい最新のマングリングルールに追従しているはずなのでうまいことdemangleできるかもしれない。
 
@@ -50,7 +51,7 @@ DMDでうまくいかないんだけど...という場合は `ddemangle` とい�
 ちゃんとしたコンパイラならDWARFの `DW_AT_producer` というセクションにどのコンパイラで生成されたのかという情報が作成され、 `readelf -wi` もしくは `objdump -g` を使って確認ができる。
 
 ```console
-)$ LANG=C readelf -wi fibonacci| grep DW_AT_producer
+$ LANG=C readelf -wi fibonacci| grep DW_AT_producer
     <c>   DW_AT_producer    : Digital Mars D v2.098.1
     <184>   DW_AT_producer    : (indirect string, offset: 0x1505): GNU C11 7.5.0 -mtune=generic -march=x86-64 -g -O2 -O3 -std=gnu11 -fgnu89-inline -fmerge-all-constants -frounding-math -fstack-protector-strong -fPIC -ftls-model=initial-exec -fstack-protector-strong
 ```
